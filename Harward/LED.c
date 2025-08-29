@@ -9,5 +9,5 @@ void LED_Init(void)
 	GPIO_InitStructure.GPIO_Pin = LED_PIN2;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
-	
+	GPIO_ResetBits(GPIOA,LED_PIN2);
 }

@@ -2,7 +2,6 @@
 #include "LED.h"					//LED灯
 #include "Delay.h"
 #include "BEEP.h"					//蜂鸣器
-#include "HCSR312.h"				//人体感应模块
 #include "OLED.h"					//OLED显示屏
 #include "Motor.h"					//电机
 #include "Servo.h"					//舵机
@@ -25,7 +24,6 @@ int main(void)
 {
 	LED_Init();				 //LED灯初始化     PA7
  	BEEP_Init();             //蜂鸣器初始化     PB13    
-	HC_SR312_Init();		//人体感应模块初始化  PB14 
 	OLED_Init();			//OLED显示屏初始化   PB8,PB9    
 	Motor_Init();			//电机初始化		(TIM3,PA6),PA4,PA5         
 	Servo_Init();			//舵机初始化		(TIM4,PB6)  
@@ -58,6 +56,7 @@ int main(void)
 				}
 			else
 			{
+				LED_PIN_2(1);               		//电源指示灯亮
 				OLED_ShowString(1,8,"Speed:");
 				OLED_ShowNum(1,14,Speed,2);
 			
@@ -77,24 +76,13 @@ int main(void)
 				}
 				OLED_ShowNum(3,8,temperature/100,3);		//计算温度值
 				OLED_ShowString(3,11,".");
-				OLED_ShowNum(3,12,temperature%100,2);
-				OLED_ShowString(4,1,"EXIST:");			
+				OLED_ShowNum(3,12,temperature%100,2);		
 				BlueTooth_Printf("/Mode:%d\r\n",Mode);				//将数值发送到蓝牙主机上
 				int t_int = temperature / 100;					//传输温度的整数位
 				int t_dec = temperature % 100;					//传输温度的小数位
 				BlueTooth_Printf("/Temperature:%d.%02d\r\n", t_int, t_dec);
 				BlueTooth_Printf("/Distance:%d\r\n",Distance);
 				BlueTooth_Printf("/Mode:%d\r\n",Mode);
-				if(HC_SR312_Status == 1)						//检测人体是否存在
-				{
-					OLED_ShowString(4,7,"YES");
-					BlueTooth_Printf("Person_EXITST:YES");
-				}
-				else
-				{
-					OLED_ShowString(4,7,"NO ");
-					BlueTooth_Printf("Person_EXITST:NO ");
-				}
 				
 				if(Key_Mode)
 				{
@@ -139,7 +127,7 @@ int main(void)
 				
 				if(Mode == 2) 
 				{
-					if(Distance >= 0 && Distance <= 20 && HC_SR312_Status == ENABLE)   //检测到目标
+					if(Distance >= 0 && Distance <= 20)   //检测到目标
 					{
 						Servo1_Stop();  
 						Servo_SetAngle(Servo1_GetAngle());   // 舵机2对齐舵机1
@@ -178,6 +166,7 @@ int main(void)
 		}
 		else 				//关机键按下 | 开机和关机键都没按 
 		{
+			LED_PIN_2(0);				//电源指示灯灭
 			Key_Mode = 0;
 			Mode = 0;
 			Key_Start_Flag = 0;				//开机标志位清0
