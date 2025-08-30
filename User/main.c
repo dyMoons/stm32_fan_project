@@ -127,7 +127,7 @@ int main(void)
 				
 				if(Mode == 2) 
 				{
-					if(Distance >= 0 && Distance <= 20)   //检测到目标
+					if(Distance <= 20)   //检测到目标
 					{
 						Servo1_Stop();  
 						Servo_SetAngle(Servo1_GetAngle());   // 舵机2对齐舵机1
