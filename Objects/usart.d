@@ -28,6 +28,8 @@
 .\objects\usart.o: .\Library\stm32f10x_usart.h
 .\objects\usart.o: .\Library\stm32f10x_wwdg.h
 .\objects\usart.o: .\Library\misc.h
+.\objects\usart.o: D:\keil5.25\ARM\ARMCC\Bin\..\include\string.h
 .\objects\usart.o: System\USART.h
 .\objects\usart.o: D:\keil5.25\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\usart.o: .\Harward\Key.h
 .\objects\usart.o: D:\keil5.25\ARM\ARMCC\Bin\..\include\stdarg.h

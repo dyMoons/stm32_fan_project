@@ -779,7 +779,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\System\Delay.h)(0x68AB1B5D)()
-F (.\System\USART.c)(0x68A07942)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library -I .\Start -I .\System -I .\User -I .\Harward --no-multibyte-chars-I.\RTE\_Target_1-ID:\keil5.25\ARM\PACK\Keil\STM32F1xx_DFP\2.4.1\Device\Include-ID:\keil5.25\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
+F (.\System\USART.c)(0x68B2F706)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library -I .\Start -I .\System -I .\User -I .\Harward --no-multibyte-chars-I.\RTE\_Target_1-ID:\keil5.25\ARM\PACK\Keil\STM32F1xx_DFP\2.4.1\Device\Include-ID:\keil5.25\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\keil5.25\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -808,8 +808,10 @@ I (.\Library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
+I (D:\keil5.25\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (System\USART.h)(0x68A07D0B)
 I (D:\keil5.25\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (.\Harward\Key.h)(0x68A5BF65)
 I (D:\keil5.25\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
 F (.\System\USART.h)(0x68A07D0B)()
 F (.\Harward\OLED.c)(0x6703BBF4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library -I .\Start -I .\System -I .\User -I .\Harward --no-multibyte-chars-I.\RTE\_Target_1-ID:\keil5.25\ARM\PACK\Keil\STM32F1xx_DFP\2.4.1\Device\Include-ID:\keil5.25\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\oled.o --omf_browse .\objects\oled.crf --depend .\objects\oled.d)
@@ -1064,7 +1066,7 @@ I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 I (.\System\Delay.h)(0x68AB1B5D)
 F (.\Harward\HCSR04.h)(0x68A5DEC9)()
-F (.\User\main.c)(0x68B1B3FD)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library -I .\Start -I .\System -I .\User -I .\Harward --no-multibyte-chars-I.\RTE\_Target_1-ID:\keil5.25\ARM\PACK\Keil\STM32F1xx_DFP\2.4.1\Device\Include-ID:\keil5.25\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x68B2F7CA)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library -I .\Start -I .\System -I .\User -I .\Harward --no-multibyte-chars-I.\RTE\_Target_1-ID:\keil5.25\ARM\PACK\Keil\STM32F1xx_DFP\2.4.1\Device\Include-ID:\keil5.25\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\keil5.25\ARM\ARMCC\include\stdint.h)(0x599ECD2E)

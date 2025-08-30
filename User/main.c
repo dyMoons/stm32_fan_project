@@ -82,7 +82,7 @@ int main(void)
 				int t_dec = temperature % 100;					//传输温度的小数位
 				BlueTooth_Printf("/Temperature:%d.%02d\r\n", t_int, t_dec);
 				BlueTooth_Printf("/Distance:%d\r\n",Distance);
-				BlueTooth_Printf("/Mode:%d\r\n",Mode);
+				BlueTooth_Printf("/Speed:%d\r\n",Speed);
 				
 				if(Key_Mode)
 				{

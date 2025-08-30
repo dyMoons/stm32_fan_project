@@ -1,6 +1,16 @@
-#include "stm32f10x.h"                  // Device header
+#include "stm32f10x.h" // Device header
+#include <string.h>
 #include "USART.h" 
+#include "Key.h" 
 #include "stdarg.h" 
+
+extern uint8_t Key_Mode;
+extern uint8_t Key_Start_Flag;
+extern uint8_t Key_Down_Flag;
+extern uint8_t Key_Speed_Flag;
+
+char RX_Buffer[100];   // 接收缓冲区
+uint8_t RX_Index = 0;  // 当前存储位置
 
 void USART_BLUE_Init(uint32_t BaudRate)
 {
@@ -59,11 +69,58 @@ void BlueTooth_Printf(char* format, ...)
 	Send_String(String);
 }
 
+void Parse_Command(char* cmd) 					//蓝牙命令解析
+{
+	BlueTooth_Printf("Got Command: [%s]\r\n", cmd);
+    if(strncmp(cmd, "ON",2) == 0)
+    {
+        Key_Start_Flag = 1;   // 模拟开机键按下
+        Key_Down_Flag = 0;
+        BlueTooth_Printf("Fan Power ON\r\n");
+    }
+    else if(strncmp(cmd, "OFF",3) == 0)
+    {
+        Key_Down_Flag = 1;    // 模拟关机键按下
+        Key_Start_Flag = 0;
+        BlueTooth_Printf("Fan Power OFF\r\n");
+    }
+    else if(strncmp(cmd, "MODE", 4) == 0)
+    {
+        Key_Mode = 1; // 模拟切换模式按键按下，主循环里会处理 Mode++
+        BlueTooth_Printf("Change Mode\r\n");
+    }
+    else if(strncmp(cmd, "SPEED", 5) == 0)
+    {
+        Key_Speed_Flag = 1; // 模拟风扇挡位按键按下，主循环里会处理 Speed++
+        BlueTooth_Printf("Change Speed\r\n");
+    }
+    else
+    {
+        BlueTooth_Printf("Unknown Command: %s\r\n", cmd);			//未知命令
+    }
+}
+
+
 void USART2_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART2,USART_IT_RXNE) == SET)
 	{
-		
+		char ch = USART_ReceiveData(USART2);		//接收手机蓝牙发过来的命令
+
+        if(ch == '\r' || ch == '\n')  // 一条命令结束
+        {
+            RX_Buffer[RX_Index] = '\0';
+            RX_Index = 0;				//清0 准备下一条
+            Parse_Command(RX_Buffer); // 解析命令
+        }
+        else
+        {
+			if(ch != '\r' && ch != '\n')  // 避免存换行
+			{
+				RX_Buffer[RX_Index++] = ch;				//将接收到的命令放入缓冲区
+				if(RX_Index >= sizeof(RX_Buffer)) RX_Index = 0;		//如果接收到的命令过大则防止溢出
+			}
+        }
 		USART_ClearITPendingBit(USART2,USART_IT_RXNE);
 	}
 }
